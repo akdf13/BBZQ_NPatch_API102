@@ -1,0 +1,30 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Build artifacts and packages
+*.apk
+*.apks
+*.aab
+*.jar
+*.dex
+*.so
+*.zip
+*.tar
+*.tar.gz
+
+# Secrets / signing material
+*.keystore
+*.jks
+*.p12
+*.pem
+*.key
+
+# Large or sensitive logs
+*.log
+*logcat*.txt
+outputs/
+work/
+tools/
