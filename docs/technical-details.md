@@ -4,15 +4,18 @@
 
 BBZQ 是基于 libxposed API 102 的哔哩哔哩增强模块。目标环境中，普通管理器式流程不适用，最终采用 NPatch embedded mode：将模块嵌入目标应用，由目标应用启动时加载模块。
 
-这次问题的迷惑点在于：模块并不是完全没加载。日志能看到 `Loaded in tv.danmaku.bili on Vector(1), api=102`，但用户在 BBZQ 设置页勾选功能、保存、重启目标应用后，功能没有实际生效。
+这次问题的迷惑点在于：
 
-最终定位到三个主要问题：
+ - NPatch发布的完整版中只提供API101服务
+ - 模块并不是完全没加载。日志能看到 `Loaded in tv.danmaku.bili on Vector(1), api=102`，但用户在 BBZQ 设置页勾选功能、保存、重启目标应用后，功能没有实际生效。
+
+最终有三个问题：
 
 - NPatch 侧 API 102 服务契约不完整。
 - RemotePreferences 写入路径是只读实现。
 - BBZQ 独立设置 App 没有稳定收到 `XposedService` Binder。
 
-## 现象
+## 问题日志展现
 
 模块加载日志：
 
@@ -140,17 +143,7 @@ Unknown authority io.github.bbzq.XposedService
 Failed to find provider info for io.github.bbzq.XposedService
 ```
 
-更接近真实使用的验证方式：
+建议排查方向：
 
-1. 保持 BBZQ 独立 App 已安装且未被强停。
-2. 只重启目标应用。
-3. 查看 Binder 转发日志。
-4. 查看实际 hook 行为日志。
-
-## 使用结论
-
-- NPatch Manager 不需要常驻。
-- Shizuku 不需要日常开启。
-- BBZQ 独立 App 需要保留。
-- 改设置后，重启目标应用即可。
-- 不要在启动目标应用前手动强停 BBZQ。
+1. 查看 Binder 转发日志。
+2. 查看实际 hook 行为日志。
