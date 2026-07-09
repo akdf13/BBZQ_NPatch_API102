@@ -11,8 +11,8 @@
 
 ## 仓库内容
 
-- [docs/technical-details.md](docs/technical-details.md)：完整技术复盘。
-- [docs/reproduce-locally.md](docs/reproduce-locally.md)：本地复现和构建流程说明。
+- [docs/technical-details.md](docs/technical-details.md)：问题复盘和总结。
+- [docs/reproduce-locally.md](docs/reproduce-locally.md)：复现和流程说明。
 
 ## 最终有效状态
 
